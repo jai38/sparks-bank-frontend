@@ -98,7 +98,7 @@ class App extends Component {
   handleSignupForm = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/signup", this.state)
+      .post("https://sparks-bank2.herokuapp.com/signup", this.state)
       .then((res) => {
         const { status, error } = res.data;
         this.messages.push(error);
@@ -129,7 +129,7 @@ class App extends Component {
   handleLoginForm = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/login", this.state)
+      .post("https://sparks-bank2.herokuapp.com/login", this.state)
       .then((res) => {
         const { allUsers, data, status, error } = res.data;
         this.setState({ allUsers });
@@ -182,13 +182,15 @@ class App extends Component {
     if (this.state.status == "customer") {
       this.handleStatus("customer");
     } else
-      axios.post("http://localhost:5000/pay", this.state).then((res) => {
-        const { balance, status, error } = res.data;
-        this.messages.push(error);
-        if (balance) this.setState({ status, balance });
-        this.handleMessages(this.messages);
-        this.messages = [];
-      });
+      axios
+        .post("https://sparks-bank2.herokuapp.com/pay", this.state)
+        .then((res) => {
+          const { balance, status, error } = res.data;
+          this.messages.push(error);
+          if (balance) this.setState({ status, balance });
+          this.handleMessages(this.messages);
+          this.messages = [];
+        });
   };
   handleRequest = (requestAccount) => {
     let requestUser = {};
@@ -210,17 +212,19 @@ class App extends Component {
     if (this.state.status == "customer") {
       this.handleStatus("customer");
     } else
-      axios.post("http://localhost:5000/request", this.state).then((res) => {
-        const { status, error } = res.data;
-        this.messages.push(error);
-        // if (balance) {
-        this.handleMessages(this.messages);
-        this.setState({ status });
-        // } else {
-        // this.handleMessages(this.messages);
-        // }
-        this.messages = [];
-      });
+      axios
+        .post("https://sparks-bank2.herokuapp.com/request", this.state)
+        .then((res) => {
+          const { status, error } = res.data;
+          this.messages.push(error);
+          // if (balance) {
+          this.handleMessages(this.messages);
+          this.setState({ status });
+          // } else {
+          // this.handleMessages(this.messages);
+          // }
+          this.messages = [];
+        });
   };
   handleAccept = (data) => {
     this.setState({ acceptData: data });
@@ -237,7 +241,7 @@ class App extends Component {
   handlePayFromRequest = () => {
     this.messages = [];
     axios
-      .post("http://localhost:5000/payFromRequest", this.state)
+      .post("https://sparks-bank2.herokuapp.com/payFromRequest", this.state)
       .then((res) => {
         const { balance, status, error } = res.data;
         this.messages.push(error);

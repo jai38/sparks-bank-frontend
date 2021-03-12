@@ -35,7 +35,7 @@ class App extends Component {
     requestUser: "",
     amount: "",
     acceptData: {},
-    confirmStatus: true,
+    confirmStatus: false,
     confirm: "",
   };
   messages = [];

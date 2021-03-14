@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://sparks-bank1.herokuapp.com"
+  "proxy": "http://localhost:5000"
 }

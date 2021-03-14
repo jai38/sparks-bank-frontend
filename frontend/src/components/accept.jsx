@@ -12,7 +12,11 @@ const Accept = (props) => {
     styles = stylesLight;
     [t, trh] = ["", "table-primary"];
   }
-  let requests = props.data.requests;
+  let requests = props.requests;
+  let newReq = [];
+  if (props.requests && props.requests[props.page]) {
+    newReq = props.requests[props.page];
+  }
   if (!requests) return <div></div>;
   const renderTable = (customer, index) => {
     let tr;
@@ -60,17 +64,35 @@ const Accept = (props) => {
       >
         Home
       </button>
-      <table className={"table table-bordered " + t}>
-        <thead>
-          <tr className={trh}>
-            <th scope="col">Name</th>
-            <th scope="col">Account</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Accept/decline</th>
-          </tr>
-        </thead>
-        <tbody>{requests.map(renderTable)}</tbody>
-      </table>
+      <div className="container">
+        <table className={"table table-bordered " + t}>
+          <thead>
+            <tr className={trh}>
+              <th scope="col">Name</th>
+              <th scope="col">Account</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Accept/decline</th>
+            </tr>
+          </thead>
+          <tbody>{newReq.map(renderTable)}</tbody>
+        </table>
+        <div className="d-flex justify-content-between">
+          <button
+            className="btn btn-warning p-2"
+            style={{ width: "10vw" }}
+            onClick={props.prevPage}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-success  p-2 "
+            style={{ width: "10vw" }}
+            onClick={props.nextPage}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -37,6 +37,8 @@ class App extends Component {
     acceptData: {},
     confirmStatus: false,
     confirm: "",
+    history: [],
+    page: 0,
   };
   messages = [];
   data = {};
@@ -53,6 +55,16 @@ class App extends Component {
   // componentWillMount() {
   //   this.callBackend();
   // }
+  getSplited = (value, range) => {
+    let splited = [];
+    let count = 0;
+    while (value.length > 0) {
+      count++;
+      splited.push(value.splice(0, range));
+    }
+    splited.unshift(count);
+    return splited;
+  };
   initValues = () => {
     window.location.reload();
   };
@@ -131,10 +143,25 @@ class App extends Component {
     axios
       .post("/login", this.state)
       .then((res) => {
-        const { allUsers, data, status, error } = res.data;
+        let { allUsers, data, status, error } = res.data;
         this.setState({ allUsers });
         if (error == "success") {
           this.data = data;
+          let history = data.history.reverse();
+          history = this.getSplited(history, 8);
+          let maxHistoryPage = history.shift();
+          this.setState({ maxHistoryPage: maxHistoryPage - 1 });
+          this.setState({ history });
+          let allUsersTable = JSON.parse(JSON.stringify(allUsers.reverse()));
+          allUsersTable = this.getSplited(allUsersTable, 4);
+          let maxUserPage = allUsersTable.shift();
+          this.setState({ allUsersTable });
+          this.setState({ maxUserPage: maxUserPage - 1 });
+          let requests = data.requests.reverse();
+          requests = this.getSplited(requests, 4);
+          let maxReqPage = requests.shift();
+          this.setState({ maxReqPage: maxReqPage - 1 });
+          this.setState({ requests });
           this.setState({ data });
           this.setState({
             name: data.name,
@@ -256,6 +283,56 @@ class App extends Component {
       this.messages = [];
     });
   };
+  handleNextPage = () => {
+    let status = this.state.status;
+    this.messages = [];
+    let currentPage = this.state.page;
+    currentPage++;
+    if (status == "history") {
+      if (currentPage <= this.state.maxHistoryPage) {
+        this.setState({ page: currentPage });
+      } else {
+        this.messages.push("This is the last page of your history");
+        this.handleMessages(this.messages);
+        this.messages = [];
+      }
+    } else if (status == "customer") {
+      if (currentPage <= this.state.maxUserPage) {
+        this.setState({ page: currentPage });
+      } else {
+        this.messages.push("This is the last page of Customers");
+        this.handleMessages(this.messages);
+        this.messages = [];
+      }
+    } else if (status == "accept") {
+      if (currentPage <= this.state.maxReqPage) {
+        this.setState({ page: currentPage });
+      } else {
+        this.messages.push("This is the last page of Requests");
+        this.handleMessages(this.messages);
+        this.messages = [];
+      }
+    }
+  };
+  handlePrevPage = () => {
+    let status = this.state.status;
+    this.messages = [];
+    if (status == "history") {
+      this.messages.push("This is the first page of your history");
+    } else if (status == "customer") {
+      this.messages.push("This is the first page of Customers");
+    } else if (status == "accept") {
+      this.messages.push("This is the first page of Requests");
+    }
+    let currentPage = this.state.page;
+    currentPage--;
+    if (currentPage >= 0) {
+      this.setState({ page: currentPage });
+    } else {
+      this.handleMessages(this.messages);
+      this.messages = [];
+    }
+  };
   render() {
     let styles;
     let loginStatus = "none";
@@ -356,18 +433,24 @@ class App extends Component {
         <div style={{ display: customerStatus }}>
           <Customer
             getTheme={this.state.getTheme}
-            allUsers={this.state.allUsers}
+            allUsers={this.state.allUsersTable}
             pay={this.handlePay}
             account={this.state.account}
             changeStatus={this.handleStatus}
             request={this.handleRequest}
+            page={this.state.page}
+            prevPage={this.handlePrevPage}
+            nextPage={this.handleNextPage}
           />
         </div>
         <div style={{ display: acceptStatus }}>
           <Accept
             getTheme={this.state.getTheme}
-            data={this.state.data}
+            requests={this.state.requests}
             getData={this.handleAccept}
+            page={this.state.page}
+            prevPage={this.handlePrevPage}
+            nextPage={this.handleNextPage}
             changeStatus={this.handleStatus}
             confirmStatus={this.handleConfirm}
           />
@@ -376,7 +459,10 @@ class App extends Component {
           <History
             getTheme={this.state.getTheme}
             changeStatus={this.handleStatus}
-            data={this.state.data}
+            history={this.state.history}
+            page={this.state.page}
+            prevPage={this.handlePrevPage}
+            nextPage={this.handleNextPage}
           />
         </div>
         <div style={{ display: payStatus }}>

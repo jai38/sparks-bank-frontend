@@ -12,14 +12,15 @@ const Customer = (props) => {
     [t, trh] = ["", "table-primary"];
   }
   let allUsers = [];
-  props.allUsers.map((c) => {
-    let currentUser = {
-      name: c.name,
-      email: c.email,
-      account: c.account,
-    };
-    allUsers.push(currentUser);
-  });
+  if (props.allUsers && props.allUsers[props.page])
+    props.allUsers[props.page].map((c) => {
+      let currentUser = {
+        name: c.name,
+        email: c.email,
+        account: c.account,
+      };
+      allUsers.push(currentUser);
+    });
   const renderTable = (customer, index) => {
     let tr;
     if (index % 2 == 0) {
@@ -82,6 +83,22 @@ const Customer = (props) => {
           </thead>
           <tbody>{allUsers.map(renderTable)}</tbody>
         </table>
+        <div className="d-flex justify-content-between">
+          <button
+            className="btn btn-warning  p-2"
+            style={{ width: "10vw" }}
+            onClick={props.prevPage}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-success  p-2"
+            style={{ width: "10vw" }}
+            onClick={props.nextPage}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

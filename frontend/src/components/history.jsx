@@ -12,8 +12,8 @@ const History = (props) => {
     [t, trh] = ["", "table-primary"];
   }
   let history = [];
-  if (props.data.history)
-    props.data.history.map((c) => {
+  if (props.history && props.history[props.page])
+    props.history[props.page].map((c) => {
       let currentHistory = {
         date: c.date,
         name: c.name,
@@ -68,6 +68,22 @@ const History = (props) => {
           </thead>
           <tbody>{history.map(renderTable)}</tbody>
         </table>
+        <div className="d-flex justify-content-between">
+          <button
+            className="btn btn-warning  p-2"
+            style={{ width: "10vw" }}
+            onClick={props.prevPage}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-success  p-2"
+            style={{ width: "10vw" }}
+            onClick={props.nextPage}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

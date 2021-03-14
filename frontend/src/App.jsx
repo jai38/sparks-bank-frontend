@@ -80,6 +80,7 @@ class App extends Component {
     this.setState({ status, page: 0 });
   };
   handleMessages = (messages) => {
+    this.messages = [];
     this.setState({ messages });
   };
   deleteMessage = () => {

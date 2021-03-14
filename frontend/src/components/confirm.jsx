@@ -19,7 +19,7 @@ const confirm = (props) => {
         <strong>
           {props.confirm} {props.acceptData.name}'s{" "}
         </strong>
-        the request? {inner}
+        request? {inner}
       </p>
       <div>
         <button

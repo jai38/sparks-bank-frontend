@@ -77,7 +77,7 @@ class App extends Component {
     this.setState({ getTheme });
   };
   handleStatus = (status) => {
-    this.setState({ status });
+    this.setState({ status, page: 0 });
   };
   handleMessages = (messages) => {
     this.setState({ messages });

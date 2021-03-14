@@ -55,6 +55,7 @@ router.post("/", (req, res) => {
         });
       })
       .catch((err) => {
+        console.log(err);
         res.json({
           status: "accept",
           error: "Something went wrong! Please try again later",

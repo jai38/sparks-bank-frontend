@@ -236,29 +236,25 @@ class App extends Component {
   };
   handlePayFromRequest = () => {
     this.messages = [];
-    axios
-      .post("https://sparks-bank2.herokuapp.com/payFromRequest", this.state)
-      .then((res) => {
-        const { balance, status, error } = res.data;
-        this.messages.push(error);
-        if (balance) {
-          this.setState({ status, balance });
-        }
-        this.handleMessages(this.messages);
-        this.messages = [];
-      });
+    axios.post("/payFromRequest", this.state).then((res) => {
+      const { balance, status, error } = res.data;
+      this.messages.push(error);
+      if (balance) {
+        this.setState({ status, balance });
+      }
+      this.handleMessages(this.messages);
+      this.messages = [];
+    });
   };
   handledeclineFromRequest = () => {
     this.messages = [];
-    axios
-      .post("http://localhost:5000/declineFromRequest", this.state)
-      .then((res) => {
-        const { status, error } = res.data;
-        this.messages.push(error);
-        this.setState({ status });
-        this.handleMessages(this.messages);
-        this.messages = [];
-      });
+    axios.post("/declineFromRequest", this.state).then((res) => {
+      const { status, error } = res.data;
+      this.messages.push(error);
+      this.setState({ status });
+      this.handleMessages(this.messages);
+      this.messages = [];
+    });
   };
   render() {
     let styles;

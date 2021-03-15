@@ -1,6 +1,6 @@
 import React from "react";
-import stylesDark from "../stylesDark";
-import stylesLight from "../stylesLight";
+import stylesDark from "../../stylesDark";
+import stylesLight from "../../stylesLight";
 const SignupFooter = (props) => {
   let styles;
   if (props.getTheme == "dark") {

@@ -2,8 +2,8 @@ import React from "react";
 import SignupHeader from "./SignupHeader";
 import SignupMain from "./SignupMain";
 import SignupFooter from "./SignupFooter";
-import stylesDark from "../stylesDark";
-import stylesLight from "../stylesLight";
+import stylesDark from "../../stylesDark";
+import stylesLight from "../../stylesLight";
 const Signup = (props) => {
   let styles;
   if (props.getTheme == "dark") {

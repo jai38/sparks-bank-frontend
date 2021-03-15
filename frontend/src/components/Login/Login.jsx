@@ -3,8 +3,8 @@ import LoginHeader from "./LoginHeader";
 import LoginMain from "./LoginMain";
 import LoginFooter from "./LoginFooter";
 import mirror from "./../../images/mirror.png";
-import stylesDark from "../stylesDark";
-import stylesLight from "../stylesLight";
+import stylesDark from "../../stylesDark";
+import stylesLight from "../../stylesLight";
 const MainContent = (props) => {
   let styles;
   if (props.getTheme == "dark") {

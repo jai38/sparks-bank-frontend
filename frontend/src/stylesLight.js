@@ -3,7 +3,7 @@ const changeTheme = () => {
 };
 let styles = {
   root: {
-    backgroundColor: "black",
+    backgroundColor: "#91a6f0",
     height: "100vh",
   },
   BoxLogin: {
@@ -11,8 +11,9 @@ let styles = {
     width: "40%",
     left: "30%",
     paddingBottom: "2%",
-    backgroundImage:
-      "linear-gradient(to right, #000000, #262626 54%, #000000 )",
+    backgroundColor: "#91a6f0",
+    backgroundImage: "linear-gradient(to right, #91a6f0, #ffffff 45%, #91a6f0)",
+    // #91a6ff
   },
   Img: {
     position: "absolute",
@@ -23,29 +24,31 @@ let styles = {
     paddingLeft: 0,
     paddingRight: 0,
     backgroundImage:
-      "linear-gradient(to right, #000000 0%, #262626 54%, #000000 )",
+      "linear-gradient(to right, #91a6f0 0%, #ffffff 54%, #91a6f0)",
+    backgroundColor: "#91a6f0",
   },
   BoxDashboard: {
     backgroundImage:
-      "linear-gradient(to right, #000000 0%, #262626 54%, #000000 )",
+      "linear-gradient(to right, #91a6f0 0%, #ffffff 54%, #91a6f0)",
+    backgroundColor: "#91a6f0",
   },
   profileDiv: {
     position: "absolute",
     top: "30%",
     left: "2%",
     width: "25vw",
-    color: "white",
+    color: "black",
     border: "solid",
-    // backgroundColor: "#262626",
-    borderColor: "#cc0000",
+    // backgroundColor: "#bcc8f6",
+    borderColor: "black",
     borderRadius: "30px",
   },
   Heading: {
     justifyContent: "center",
-    color: "white",
+    color: "black",
   },
   Line: {
-    backgroundColor: "white",
+    backgroundColor: "black",
     padding: 2,
   },
   InputDiv: {
@@ -56,9 +59,9 @@ let styles = {
     // left: "5%",
   },
   Input: {
-    color: "white",
+    color: "black",
     paddingLeft: 20,
-    backgroundColor: "#404040",
+    backgroundColor: "white",
     width: "18vw",
     fontSize: "120%",
   },
@@ -66,13 +69,17 @@ let styles = {
     position: "relative",
     left: "25%",
     width: "19vw",
-    backgroundColor: "#ff4444",
-    borderColor: "#ff4444",
+    backgroundColor: "#91a6f0",
+    borderColor: "#91a6f0",
+    color: "black",
   },
   SignupButton: {
     position: "relative",
     left: "28%",
     width: "20vw",
+    backgroundColor: "#91a6f0",
+    borderColor: "#91a6f0",
+    color: "black",
   },
   allButton: {
     position: "relative",
@@ -89,7 +96,8 @@ let styles = {
   sideButton: {
     backgroundColor: "transparent",
     borderRadius: "15px",
-    color: "white",
+    borderColor: "black",
+    color: "black",
     width: "7vw",
   },
   sideLine: {
@@ -97,7 +105,7 @@ let styles = {
     top: "15%",
     border: "outset",
     height: "8vh",
-    color: "white",
+    borderColor: "skyblue",
   },
   crossButton: {
     position: "relative",
@@ -105,49 +113,51 @@ let styles = {
     width: "5vw",
     border: "solid",
     borderRadius: "18px",
-    color: "white",
+    color: "black",
   },
   homeButton: {
     position: "absolute",
     top: "20%",
-    left: "10%",
-    color: "white",
-    backgroundColor: "#d9534f",
+    left: "5%",
+    color: "black",
+    backgroundColor: "lightblue",
     width: "10vw",
   },
   InputSymbol: {
     fontSize: 24,
+    backgroundColor: "black",
   },
   ForgetPassword: {
     fontSize: "95%",
     position: "relative",
     left: "25%",
     paddingLeft: "15%",
+    color: "black",
     // justifyContent: "center",
   },
   Line2: {
     position: "relative",
-    backgroundColor: "white",
+    backgroundColor: "black",
     left: "20%",
     width: "60%",
     padding: 2,
   },
   CreateOne: {
     position: "relative",
-    color: "white",
+    color: "black",
     // top: "122%",
     left: "25%",
     fontSize: 16,
   },
   AlreadyRegister: {
     position: "relative",
-    color: "white",
+    color: "black",
     left: "36%",
     fontSize: 16,
   },
   Anchor: {
-    color: "#ff4444",
     fontSize: 19,
+    color: "#91a6f0",
   },
   themeButton: {
     position: "absolute",
@@ -157,8 +167,8 @@ let styles = {
   },
   prBox: {
     border: "solid",
-    color: "white",
-    backgroundColor: "#262626",
+    color: "black",
+    backgroundColor: "lightblue",
     borderRadius: "30px",
   },
   confirmBox: {
@@ -167,10 +177,20 @@ let styles = {
     left: "35%",
     border: "solid",
     borderRadius: "20px",
-    borderColor: "red",
-    color: "white",
+    borderColor: "blue",
+    color: "black",
     width: "30vw",
-    backgroundColor: "#262626",
+    backgroundColor: "#91a6ff",
+  },
+  searchDiv: {
+    width: "18%",
+    position: "absolute",
+    top: "19%",
+    left: "18%",
+    color: "5ite",
+  },
+  searchInput: {
+    color: "black",
   },
 };
 

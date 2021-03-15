@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
-import stylesDark from "../stylesDark";
-import stylesLight from "../stylesLight";
+import stylesDark from "../../stylesDark";
+import stylesLight from "../../stylesLight";
 
 const Dashboard = (props) => {
   let styles;

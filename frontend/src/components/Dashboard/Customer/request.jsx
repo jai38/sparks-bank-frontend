@@ -1,7 +1,8 @@
 import React from "react";
-import stylesDark from "./stylesDark";
-import stylesLight from "./stylesLight";
-const Pay = (props) => {
+import stylesDark from "../../../stylesDark";
+import stylesLight from "../../../stylesLight";
+
+const Request = (props) => {
   let styles;
   let user = props.user;
   if (props.getTheme == "dark") {
@@ -15,7 +16,7 @@ const Pay = (props) => {
       style={styles.prBox}
     >
       <form onSubmit={props.payForm}>
-        <p className="m-2 p-2">Paying to:</p>
+        <p className="m-2 p-2">Requesting from:</p>
         <p className="m-2 p-2">
           Name :{" "}
           <strong>
@@ -46,7 +47,7 @@ const Pay = (props) => {
             Back
           </button>
           <button type="submit" className="btn btn-success w-25 p-2">
-            Pay
+            Request
           </button>
         </div>
       </form>
@@ -54,4 +55,4 @@ const Pay = (props) => {
   );
 };
 
-export default Pay;
+export default Request;

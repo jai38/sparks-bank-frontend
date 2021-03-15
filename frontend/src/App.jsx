@@ -4,16 +4,16 @@ import Messages from "./components/message";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Pay from "./components/pay";
-import Request from "./components/request";
-import History from "./components/history";
-import Accept from "./components/accept";
-import Confirm from "./components/confirm";
+import Pay from "./components/Dashboard/Customer/pay";
+import Request from "./components/Dashboard/Customer/request";
+import History from "./components/Dashboard/history";
+import Accept from "./components/Dashboard/accept/accept";
+import Confirm from "./components/Dashboard/accept/confirm";
 import Theme from "./components/theme";
-import stylesDark from "./components/stylesDark";
-import stylesLight from "./components/stylesLight";
+import stylesDark from "./stylesDark";
+import stylesLight from "./stylesLight";
 import axios from "axios";
-import Customer from "./components/customer";
+import Customer from "./components/Dashboard/Customer/customer";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -39,6 +39,7 @@ class App extends Component {
     confirm: "",
     history: [],
     page: 0,
+    search: "",
   };
   messages = [];
   data = {};
@@ -64,6 +65,16 @@ class App extends Component {
     }
     splited.unshift(count);
     return splited;
+  };
+  getSearchedUser = (allUsers, value) => {
+    allUsers = JSON.parse(JSON.stringify(allUsers));
+    allUsers = allUsers.filter(
+      (user) =>
+        user.name.startsWith(value) ||
+        user.email.startsWith(value) ||
+        user.account.toString().startsWith(value)
+    );
+    return this.getSplited(allUsers, 4);
   };
   initValues = () => {
     window.location.reload();
@@ -334,6 +345,18 @@ class App extends Component {
       this.messages = [];
     }
   };
+  handleSearch = (event) => {
+    let allUsersTable = this.getSearchedUser(
+      this.state.allUsers,
+      event.target.value
+    );
+    this.setState({
+      search: event.target.value,
+    });
+    let maxUserPage = allUsersTable.shift();
+    this.setState({ allUsersTable });
+    this.setState({ maxUserPage: maxUserPage - 1 });
+  };
   render() {
     let styles;
     let loginStatus = "none";
@@ -442,6 +465,8 @@ class App extends Component {
             page={this.state.page}
             prevPage={this.handlePrevPage}
             nextPage={this.handleNextPage}
+            search={this.state.search}
+            changeSearch={this.handleSearch}
           />
         </div>
         <div style={{ display: acceptStatus }}>

@@ -6,7 +6,6 @@ const validator = require("email-validator");
 router.post("/", (req, res) => {
   const { name, email, account, password } = req.body;
   User.findOne({ email: email }).then((user) => {
-    console.log(user);
     if (user) {
       res.json({ status: "signup", error: "Email Id is taken" });
     } else {

@@ -1,8 +1,8 @@
 import React from "react";
-import stylesDark from "./stylesDark";
-import stylesLight from "./stylesLight";
-
-const Accept = (props) => {
+import Search from "./search";
+import stylesDark from "../../../stylesDark";
+import stylesLight from "../../../stylesLight";
+const Customer = (props) => {
   let [t, trh] = [];
   let styles;
   if (props.getTheme == "dark") {
@@ -12,12 +12,16 @@ const Accept = (props) => {
     styles = stylesLight;
     [t, trh] = ["", "table-primary"];
   }
-  let requests = props.requests;
-  let newReq = [];
-  if (props.requests && props.requests[props.page]) {
-    newReq = props.requests[props.page];
-  }
-  if (!requests) return <div></div>;
+  let allUsers = [];
+  if (props.allUsers && props.allUsers[props.page])
+    props.allUsers[props.page].map((c) => {
+      let currentUser = {
+        name: c.name,
+        email: c.email,
+        account: c.account,
+      };
+      allUsers.push(currentUser);
+    });
   const renderTable = (customer, index) => {
     let tr;
     if (index % 2 == 0) {
@@ -28,27 +32,31 @@ const Accept = (props) => {
     return (
       <tr className={tr} key={index}>
         <td className="w-25">{customer.name}</td>
+        <td className="w-25">{customer.email}</td>
         <td className="w-25">{customer.account}</td>
-        <td className="w-25">{customer.amount}</td>
         <td className="w-25">
           <div className="d-flex">
             <button
               className="btn btn-success m-3"
               onClick={() => {
-                props.getData(customer);
-                props.confirmStatus("accept");
+                if (customer.account == props.account)
+                  props.changeStatus("customer");
+                else props.changeStatus("request");
+                props.request(customer.account);
               }}
             >
-              Accept
+              Request
             </button>
             <button
               className="btn btn-danger m-3"
               onClick={() => {
-                props.getData(customer);
-                props.confirmStatus("decline");
+                if (customer.account == props.account)
+                  props.changeStatus("customer");
+                else props.changeStatus("pay");
+                props.pay(customer.account);
               }}
             >
-              Decline
+              Pay
             </button>
           </div>
         </td>
@@ -64,28 +72,33 @@ const Accept = (props) => {
       >
         Home
       </button>
+      <Search
+        getTheme={props.getTheme}
+        search={props.search}
+        changeSearch={props.changeSearch}
+      />
       <div className="container">
         <table className={"table table-bordered " + t}>
           <thead>
             <tr className={trh}>
               <th scope="col">Name</th>
-              <th scope="col">Account</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Accept/decline</th>
+              <th scope="col">Email</th>
+              <th scope="col">Account No.</th>
+              <th scope="col">Transfer</th>
             </tr>
           </thead>
-          <tbody>{newReq.map(renderTable)}</tbody>
+          <tbody>{allUsers.map(renderTable)}</tbody>
         </table>
         <div className="d-flex justify-content-between">
           <button
-            className="btn btn-warning p-2"
+            className="btn btn-warning  p-2"
             style={{ width: "10vw" }}
             onClick={props.prevPage}
           >
             Prev
           </button>
           <button
-            className="btn btn-success  p-2 "
+            className="btn btn-success  p-2"
             style={{ width: "10vw" }}
             onClick={props.nextPage}
           >
@@ -97,4 +110,4 @@ const Accept = (props) => {
   );
 };
 
-export default Accept;
+export default Customer;

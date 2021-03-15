@@ -10,9 +10,9 @@ const LoginFooter = (props) => {
   }
   return (
     <footer>
-      <a className="d-flex badge m-1" style={styles.ForgetPassword} href="#">
+      {/* <a className="d-flex badge m-1" style={styles.ForgetPassword} href="#">
         Forget password?
-      </a>
+      </a> */}
       <hr className="m-4" style={styles.Line2} />
       <div className="m-1" style={styles.CreateOne}>
         Dont have an account?{" "}

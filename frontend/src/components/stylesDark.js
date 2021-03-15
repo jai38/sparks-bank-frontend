@@ -166,6 +166,8 @@ let styles = {
     top: "50%",
     left: "35%",
     border: "solid",
+    borderRadius: "20px",
+    borderColor: "red",
     color: "white",
     width: "30vw",
     backgroundColor: "#262626",

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("./../Users");
+const validator = require("email-validator");
 
 router.post("/", (req, res) => {
   const { name, email, account, password } = req.body;
@@ -13,27 +14,31 @@ router.post("/", (req, res) => {
         if (user) {
           res.json({ status: "signup", error: "Account No. is taken" });
         } else {
-          const newUser = new User({
-            name: name,
-            email: email,
-            account: account,
-            password: password,
-            balance: 10000,
-          });
-          newUser
-            .save()
-            .then(() =>
-              res.json({
-                status: "login",
-                error: "Registeration Successfull Please login to procced",
-              })
-            )
-            .catch(() =>
-              res.json({
-                status: "signup",
-                error: "Cannot connect to database",
-              })
-            );
+          if (!validator.validate(email)) {
+            res.json({ status: "signup", error: "Please Enter a valid Email" });
+          } else {
+            const newUser = new User({
+              name: name,
+              email: email,
+              account: account,
+              password: password,
+              balance: 10000,
+            });
+            newUser
+              .save()
+              .then(() =>
+                res.json({
+                  status: "login",
+                  error: "Registeration Successfull Please login to procced",
+                })
+              )
+              .catch(() =>
+                res.json({
+                  status: "signup",
+                  error: "Cannot connect to database",
+                })
+              );
+          }
         }
       });
     }

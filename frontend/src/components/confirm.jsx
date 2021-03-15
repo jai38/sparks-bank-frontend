@@ -13,7 +13,7 @@ const confirm = (props) => {
     inner = `${props.acceptData.amount} will be debited from your account`;
   }
   return (
-    <div className="d-flex flex-column" style={styles.confirmBox}>
+    <div className="d-flex flex-column p-3" style={styles.confirmBox}>
       <p>
         Are you sure you want to{" "}
         <strong>
@@ -21,7 +21,7 @@ const confirm = (props) => {
         </strong>
         request? {inner}
       </p>
-      <div>
+      <div className="d-flex justify-content-between">
         <button
           className="btn btn-success m-2"
           onClick={() => {

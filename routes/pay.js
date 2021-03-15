@@ -13,14 +13,14 @@ router.post("/", (req, res) => {
     amount += ".00";
   }
   let reciept = {
-    date: new Date().toLocaleString(),
+    date: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
     account: user.payUser.account,
     name: user.payUser.name,
     status: "Debit",
     amount: amount,
   };
   let payReciept = {
-    date: new Date().toLocaleString(),
+    date: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
     account: user.account,
     name: user.name,
     status: "Credit",

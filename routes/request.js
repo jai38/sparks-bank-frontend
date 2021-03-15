@@ -5,7 +5,7 @@ router.post("/", (req, res) => {
   let state = req.body;
   let requestUser = state.requestUser;
   let currentRequest = {
-    date: new Date().toLocaleString(),
+    date: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
     name: state.name,
     account: state.account,
     amount: state.amount,

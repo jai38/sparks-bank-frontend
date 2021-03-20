@@ -357,6 +357,9 @@ class App extends Component {
     this.setState({
       search: event.target.value,
     });
+    if (this.state.search.length > 0) {
+      this.setState({ page: 0 });
+    }
     let maxUserPage = allUsersTable.shift();
     this.setState({ allUsersTable });
     this.setState({ maxUserPage: maxUserPage - 1 });

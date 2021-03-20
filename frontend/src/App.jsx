@@ -132,6 +132,7 @@ class App extends Component {
         this.messages.push(error);
         this.setState({ error });
         if (status == "login") {
+          this.messages.pop();
           window.alert(error);
           this.initValues();
         }

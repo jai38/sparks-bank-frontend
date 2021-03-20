@@ -9,7 +9,6 @@ router.post("/", (req, res) => {
     .then((users) => {
       allUsers = users;
       email = email.toLowerCase();
-      console.log(email);
       User.findOne({ email }).then((user) => {
         if (user) {
           if (user.password == password) {

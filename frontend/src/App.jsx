@@ -89,6 +89,9 @@ class App extends Component {
     this.setState({ getTheme });
   };
   handleStatus = (status) => {
+    // if (status == "customer") {
+    //   this.setState({ amount: "" });
+    // }
     this.setState({ status, page: 0 });
   };
   handleMessages = (messages) => {

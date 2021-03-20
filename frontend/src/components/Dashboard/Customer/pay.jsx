@@ -36,6 +36,7 @@ const Pay = (props) => {
             value={props.amount}
             name="amount"
             required="true"
+            min="1"
           />
         </p>
         <div className="d-flex justify-content-around m-4">

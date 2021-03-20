@@ -67,12 +67,17 @@ class App extends Component {
     return splited;
   };
   getSearchedUser = (allUsers, value) => {
+    let valueUpper = value.toUpperCase();
+    let valueLower = value.toLowerCase();
     allUsers = JSON.parse(JSON.stringify(allUsers));
     allUsers = allUsers.filter(
       (user) =>
-        user.name.startsWith(value) ||
-        user.email.startsWith(value) ||
-        user.account.toString().startsWith(value)
+        user.name.startsWith(valueUpper) ||
+        user.email.startsWith(valueUpper) ||
+        user.account.toString().startsWith(valueUpper) ||
+        user.name.startsWith(valueLower) ||
+        user.email.startsWith(valueLower) ||
+        user.account.toString().startsWith(valueLower)
     );
     return this.getSplited(allUsers, 4);
   };

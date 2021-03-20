@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
           } else {
             const newUser = new User({
               name: name,
-              email: email,
+              email: email.toLowerCase(),
               account: account,
               password: password,
               balance: 10000,

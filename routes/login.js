@@ -3,12 +3,14 @@ const router = express.Router();
 const User = require("./../Users");
 
 router.post("/", (req, res) => {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
   let allUsers = {};
   User.find()
     .then((users) => {
       allUsers = users;
-      User.findOne({ email: email }).then((user) => {
+      email = email.toLowerCase();
+      console.log(email);
+      User.findOne({ email }).then((user) => {
         if (user) {
           if (user.password == password) {
             res.json({
